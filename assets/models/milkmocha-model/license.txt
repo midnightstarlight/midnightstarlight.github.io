@@ -1,0 +1,11 @@
+Model Information:
+* title:	Milk And Mocha 3D Model
+* source:	https://sketchfab.com/3d-models/milk-and-mocha-3d-model-498a8e55c9e34369a975eaabadc784af
+* author:	Eduardo Lira (https://sketchfab.com/eduardolira)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Milk And Mocha 3D Model" (https://sketchfab.com/3d-models/milk-and-mocha-3d-model-498a8e55c9e34369a975eaabadc784af) by Eduardo Lira (https://sketchfab.com/eduardolira) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
