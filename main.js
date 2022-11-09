@@ -4,14 +4,6 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 import {loadGLTF} from "./libs/loader.js";
 
-// const loadGLTF = (path) => {
-//   return new Promise((resolve, reject) => {
-//     const loader = new GLFTLoader();
-//       resolve(glft);
-//       });
-//   });
-// }
-
 document.addEventListener('DOMContentLoaded', () => {
 
   console.log("test start");
@@ -41,15 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     gltf.scene.scale.set(1,1,1);
     gltf.scene.position.set(-3,0,-1);
     anchor.group.add(gltf.scene);
-
-
-    // const loader = new GLTFLoader();
-    // loader.load("./assets/models/milkmocha-model/scene.gltf", (gltf) => {
-    //   // gltf scene can contain multiple items so it's more of a scene the obj
-    //   gltf.scene.scale.set(1,1,1);
-    //   gltf.scene.position.set(-3,0,-1);
-    //   anchor.group.add(gltf.scene);
-    // });
 
     await mindarThree.start(); // wanna wait till render is ready before starting
 
