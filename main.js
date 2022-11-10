@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mm_gltf = await loadGLTF("./assets/models/milkmocha-model/scene.gltf");
     mm_gltf.scene.scale.set(1,1,1);
     mm_gltf.scene.position.set(-3,0,-1);
+    mm_gltf.scene.userData.clickable = true;
     // mm_gltf.scene.scale.set(1,1,1);
     // mm_gltf.scene.position.set(0,0,0);
 
@@ -56,30 +57,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const clock = new THREE.Clock(); // to manage time
 
 
-    const audioClip = await loadAudio("./assets/sfx/musicband-background.mp3");
 
     const listener = new THREE.AudioListener();
-    const audio = new THREE.PositionalAudio(listener);
-
     camera.add(listener);
-    mmAnchor.group.add(audio);
 
-    audio.setRefDistance(100);
+    const audioClip = await loadAudio("./assets/sfx/musicband-background.mp3");
+    // const audio = new THREE.PositionalAudio(listener);
+    // audio.setRefDistance(100);
+    const audio = new THREE.Audio(listener);
     audio.setBuffer(audioClip); // assign audio clip to audio object
-    audio.setLoop(true);
+    // audio.setLoop(true);
+
+    // camera.add(listener);
+    // mmAnchor.group.add(audio);
+
 
     //events handling - target lost / found
 
-    mmAnchor.onTargetFound = () => {
-      console.log("target found");
-      audio.play();
-    }
+    // mmAnchor.onTargetFound = () => {
+    //   console.log("target found");
+    //   // audio.play();
+    // }
+    //
+    // mmAnchor.onTargetLost = () => {
+    //   console.log("target lost");
+    //   // audio.pause();
+    // }
 
-    mmAnchor.onTargetLost = () => {
-      console.log("target lost");
-      audio.pause();
-    }
+    //dom > y axis go from top to bottom and canvas bottom to top hence need to reverse y coordinate by * -1
+    document.body.addEventListener("click",(e) => {
+      const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      const mouseY = -1 * ((e.clientY / window.innerHeight) * 2 - 1);
+      const mouse = new THREE.Vector2(mouseX, mouseY);
 
+      const raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(mouse,camera); // requires scale from -1 to 1 hence the normalization above
+
+      //check if the raycasting is intersecting w any objects
+      const intersects = raycaster.intersectObjects(scene.children, true);
+
+      if (intersects.length > 0){
+
+        console.log("intersect length "+intersects.length);
+
+        let o = intersects[0].object;
+
+        while (o.parent && !o.userData.clickable){
+          o = o.parent;
+        }
+
+        if(o.userData.clickable){
+          if(o === mm_gltf.scene){
+              audio.play();
+              console.log("click detected");
+          }
+        }
+      }
+    });
 
     await mindarThree.start(); // wanna wait till render is ready before starting
     renderer.setAnimationLoop(() => {
