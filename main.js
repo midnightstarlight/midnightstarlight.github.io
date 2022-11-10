@@ -29,9 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     //anchor.group.add(plane); //group > position and location, initial is empty, can add other rendere obj, pos set to transparent
 
 
-    const mm_gltf = await loadGLTF("./assets/models/milkmocha-model/scene.gltf");
+    const mm_gltf = await loadGLTF("./assets/models/milkmocha-model/scene2.gltf");
+    // mm_gltf.scene.scale.set(1,1,1);
+    // mm_gltf.scene.position.set(-3,0,-1);
     mm_gltf.scene.scale.set(1,1,1);
-    mm_gltf.scene.position.set(-3,0,-1);
+    mm_gltf.scene.position.set(0,0,0);
 
     const ph_gltf = await loadGLTF("./assets/models/phoenix_bird/scene.gltf");
     ph_gltf.scene.scale.set(0.005,0.005,0.005);
@@ -41,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // ph_gltf.scene.position.set(0,-0.4,0);
 
 
-    const mmAnchor = mindarThree.addAnchor(1);
+    const mmAnchor = mindarThree.addAnchor(0);
     mmAnchor.group.add(mm_gltf.scene);
 
-    const phAnchor = mindarThree.addAnchor(0);
+    const phAnchor = mindarThree.addAnchor(1);
     phAnchor.group.add(ph_gltf.scene);
 
     // glft animations
@@ -54,8 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const clock = new THREE.Clock(); // to manage time
 
-    await mindarThree.start(); // wanna wait till render is ready before starting
+    //events handling - target lost / found
 
+    mmAnchor.onTargetFound = () => {
+      console.log("target found");
+    }
+
+    mmAnchor.onTargetLost = () => {
+      console.log("target lost");
+    }
+
+
+    await mindarThree.start(); // wanna wait till render is ready before starting
     renderer.setAnimationLoop(() => {
 
       const delta = clock.getDelta();
