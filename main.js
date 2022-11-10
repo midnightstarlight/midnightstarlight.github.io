@@ -2,7 +2,7 @@
 // import {GLTFLoader} from "./libs/three.js-r132/examples/jsm/loaders/GLTFLoader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
-import {loadGLTF} from "./libs/loader.js";
+import {loadGLTF, loadAudio} from "./libs/loader.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -28,12 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // const anchor = mindarThree.addAnchor(0); //index of image is 0 because now it's only 1
     //anchor.group.add(plane); //group > position and location, initial is empty, can add other rendere obj, pos set to transparent
 
-
-    const mm_gltf = await loadGLTF("./assets/models/milkmocha-model/scene2.gltf");
-    // mm_gltf.scene.scale.set(1,1,1);
-    // mm_gltf.scene.position.set(-3,0,-1);
+    const mm_gltf = await loadGLTF("./assets/models/milkmocha-model/scene.gltf");
     mm_gltf.scene.scale.set(1,1,1);
-    mm_gltf.scene.position.set(0,0,0);
+    mm_gltf.scene.position.set(-3,0,-1);
+    // mm_gltf.scene.scale.set(1,1,1);
+    // mm_gltf.scene.position.set(0,0,0);
 
     const ph_gltf = await loadGLTF("./assets/models/phoenix_bird/scene.gltf");
     ph_gltf.scene.scale.set(0.005,0.005,0.005);
@@ -56,14 +55,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const clock = new THREE.Clock(); // to manage time
 
+
+    const audioClip = await loadAudio("./assets/sfx/musicband-background.mp3");
+
+    const listener = new THREE.AudioListener();
+    const audio = new THREE.PositionalAudio(listener);
+
+    camera.add(listener);
+    mmAnchor.group.add(audio);
+
+    audio.setRefDistance(100);
+    audio.setBuffer(audioClip); // assign audio clip to audio object
+    audio.setLoop(true);
+
     //events handling - target lost / found
 
     mmAnchor.onTargetFound = () => {
       console.log("target found");
+      audio.play();
     }
 
     mmAnchor.onTargetLost = () => {
       console.log("target lost");
+      audio.pause();
     }
 
 
