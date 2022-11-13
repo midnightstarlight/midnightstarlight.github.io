@@ -1,8 +1,10 @@
 //import * as THREE from './libs/three.js-r132/build/three.module.js';
 // import {GLTFLoader} from "./libs/three.js-r132/examples/jsm/loaders/GLTFLoader.js";
-const THREE = window.MINDAR.IMAGE.THREE;
 
 import {loadGLTF, loadAudio, loadVideo} from "./libs/loader.js";
+import {CSS3DObject} from "./libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js";
+
+const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -15,35 +17,40 @@ document.addEventListener('DOMContentLoaded', () => {
       maxTrack: 2
     });
 
-    const {renderer, scene, camera} = mindarThree;
+    const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
+
+    const obj = new CSS3DObject(document.querySelector("#ar-div"));
+    const cssAnchor = mindarThree.addCSSAnchor(0);
+    cssAnchor.group.add(obj);
+
 
 
     /////////////////////////////////////////////////////////////////////
     // Video in AR
     /////////////////////////////////////////////////////////////////////
 
-    const video = await loadVideo("./assets/videos/sintel.mp4");
-    const videoTexture = new THREE.VideoTexture(video);
-
-    // const geometry = new THREE.PlaneGeometry(1,204/480); //1:1 is square, to keep aspect ration heigh/width
-    const geometry = new THREE.PlaneGeometry(1,1); //1:1 is square, to keep aspect ration heigh/width
-
-    const material = new THREE.MeshBasicMaterial({map: videoTexture});
-    const plane = new THREE.Mesh(geometry, material);
-
-    const anchor = mindarThree.addAnchor(0);
-    anchor.group.add(plane);
-
-    anchor.onTargetFound = () => {
-      video.play();
-    }
-    anchor.onTargetLost = () => {
-      video.pause();
-    }
-
-    video.addEventListener("play", () => {
-      video.currentTime = 6
-    });
+    // const video = await loadVideo("./assets/videos/sintel.mp4");
+    // const videoTexture = new THREE.VideoTexture(video);
+    //
+    // // const geometry = new THREE.PlaneGeometry(1,204/480); //1:1 is square, to keep aspect ration heigh/width
+    // const geometry = new THREE.PlaneGeometry(1,1); //1:1 is square, to keep aspect ration heigh/width
+    //
+    // const material = new THREE.MeshBasicMaterial({map: videoTexture});
+    // const plane = new THREE.Mesh(geometry, material);
+    //
+    // const anchor = mindarThree.addAnchor(0);
+    // anchor.group.add(plane);
+    //
+    // anchor.onTargetFound = () => {
+    //   video.play();
+    // }
+    // anchor.onTargetLost = () => {
+    //   video.pause();
+    // }
+    //
+    // video.addEventListener("play", () => {
+    //   video.currentTime = 6
+    // });
 
     /////////////////////////////////////////////////////////////////////
     // 2D Plane in AR
@@ -167,7 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // const delta = clock.getDelta();
       // mixer.update(delta); //uncomment for gltf animation
-      renderer.render(scene, camera);
+      // renderer.render(Scene, camera);
+      cssRenderer.render(cssScene, camera);
     });
   }
   start();
