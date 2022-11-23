@@ -4,6 +4,7 @@
 // import {loadGLTF, loadAudio, loadVideo} from "./libs/loader.js";
 // import {CSS3DObject} from "./libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js";
 
+
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
