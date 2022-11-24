@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   start();
-  // 
+  //
   // var goFS = document.getElementById("goFS");
   // goFS.addEventListener("click", function() {
   //
@@ -38,4 +38,5 @@ document.addEventListener('DOMContentLoaded', () => {
   //  if (elem.requestFullscreen) {elem.requestFullscreen()}
   //
   // }, false);
+
 });
