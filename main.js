@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   start();
-
-  var goFS = document.getElementById("goFS");
-  goFS.addEventListener("click", function() {
-
-   const elem = document.documentElement;
-   if (elem.requestFullscreen) {elem.requestFullscreen()}
-
-  }, false);
+  // 
+  // var goFS = document.getElementById("goFS");
+  // goFS.addEventListener("click", function() {
+  //
+  //  const elem = document.documentElement;
+  //  if (elem.requestFullscreen) {elem.requestFullscreen()}
+  //
+  // }, false);
 });
