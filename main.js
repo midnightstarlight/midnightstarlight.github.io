@@ -19,18 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const geometry = new THREE.PlaneGeometry(1, 1);
     const material = new THREE.MeshBasicMaterial({color: 0x00ffff, transparent: true, opacity: 0.5});
-    const plane = new THREE.Mesh(geometry, material);
+    // const plane = new THREE.Mesh(geometry, material);
 
     const anchor = [];
+    const plane = [];
 
     for (let i = 0; i < 6; i++){
         anchor[i] = mindarThree.addAnchor(i);
-        anchor[i].group.add(plane);
+        plane[i] = new THREE.Mesh(geometry, material);
+
+        anchor[i].group.add(plane[i]);
+        console.log("loop " + i);
     }
 
-
-
-
+    // const anchor_1 = mindarThree.addAnchor(0);
+    // anchor_1.group.add(plane);
+    //
+    // const anchor_2 = mindarThree.addAnchor(1);
+    // anchor_2.group.add(plane);
 
 
     await mindarThree.start();
