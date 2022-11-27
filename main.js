@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.querySelector("#ar-div"),
-      imageTargetSrc: './assets/targets/dual_targets.mind',
+      imageTargetSrc: './assets/targets/jyang-christmas-2022-targets.mind',
       uiScanning:"#scanning",
       uiLoading: "no"
     });
@@ -21,8 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const material = new THREE.MeshBasicMaterial({color: 0x00ffff, transparent: true, opacity: 0.5});
     const plane = new THREE.Mesh(geometry, material);
 
-    const anchor = mindarThree.addAnchor(0);
-    anchor.group.add(plane);
+    const anchor = [];
+
+    for (let i = 0; i < 6; i++){
+        anchor[i] = mindarThree.addAnchor(i);
+        anchor[i].group.add(plane);
+    }
+
+
+
+
+
 
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
