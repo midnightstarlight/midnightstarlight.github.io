@@ -27,23 +27,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const anchor = [];
     const plane = [];
+    const gltf = [];
+    const mixer = [];
 
     for (let i = 0; i < 6; i++){
         anchor[i] = mindarThree.addAnchor(i);
         plane[i] = new THREE.Mesh(geometry, material);
 
         anchor[i].group.add(plane[i]);
-        console.log("loop " + i);
+        // console.log("loop " + i);
+
+        //alloc models
+        gltf[i] = await loadGLTF('../../assets/models/letters/jpie/'+ i.toString() +'.gltf');
+        gltf[i].scene.scale.set(0.9,0.9,0.9);
+        gltf[i].scene.position.set(0, 0, 0.5);
+        anchor[i].group.add(gltf[i].scene);
+        mixer[i] = new THREE.AnimationMixer(gltf[i].scene);
     }
 
-    const gltf = await loadGLTF('../../assets/models/letters/letter_p.gltf');
-    gltf.scene.scale.set(1,1,1);
-    gltf.scene.position.set(0, 0, 0.5);
 
-    // anchor[0] = mindarThree.addAnchor(0);
-    anchor[0].group.add(gltf.scene);
 
-    const mixer = new THREE.AnimationMixer(gltf.scene);
+    // const gltf = await loadGLTF('../../assets/models/letters/letter_p.gltf');
+    // gltf.scene.scale.set(1,1,1);
+    // gltf.scene.position.set(0, 0, 0.5);
+    //
+    // anchor[0].group.add(gltf.scene);
+
+    // const mixer = new THREE.AnimationMixer(gltf[0].scene);
 
 
     const clock = new THREE.Clock();
@@ -52,8 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
         const delta = clock.getDelta();
-        gltf.scene.rotation.set(0, gltf.scene.rotation.y+delta, 0);
-        mixer.update(delta);
+
+        for (let i = 0; i < 6; i++){
+            gltf[i].scene.rotation.set(0, gltf[i].scene.rotation.y+delta, 0);
+            mixer[i].update(delta);
+        }
+
+
         renderer.render(scene, camera);
     });
   }
