@@ -34,9 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         anchor[i].group.add(plane[i]);
         // console.log("loop " + i);
+
     }
 
-    
+
 
     const gltf = await loadGLTF('../../assets/models/letters/letter_p.gltf');
     gltf.scene.scale.set(1,1,1);
