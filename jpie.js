@@ -8,7 +8,38 @@ import {loadGLTF} from "../../libs/loader.js";
 
 const THREE = window.MINDAR.IMAGE.THREE;
 
+function requestFullScreen() {
+
+    var el = document.body;
+
+    // Supports most browsers and their versions.
+    var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen
+    || el.mozRequestFullScreen || el.msRequestFullScreen;
+
+    if (requestMethod) {
+
+    // Native full screen.
+    requestMethod.call(el);
+
+    } else if (typeof window.ActiveXObject !== "undefined") {
+
+        // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+
+        if (wscript !== null) {
+          wscript.SendKeys("{F11}");
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // requestFullScreen();
+
+    chrome.windows.getCurrent(null, function(window) {
+       chrome.windows.update(window.id, {state: "fullscreen"});
+     })
+
   const start = async() => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.querySelector("#ar-div"),
