@@ -23,12 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const geometry = new THREE.PlaneGeometry(1, 1);
     const material = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.8});
-    // const plane = new THREE.Mesh(geometry, material);
+
 
     const anchor = [];
     const plane = [];
     const gltf = [];
     const mixer = [];
+    const clues = new Array(6).fill(false);
 
     for (let i = 0; i < 6; i++){
         anchor[i] = mindarThree.addAnchor(i);
@@ -43,17 +44,34 @@ document.addEventListener('DOMContentLoaded', () => {
         gltf[i].scene.position.set(0, 0, 0.5);
         anchor[i].group.add(gltf[i].scene);
         mixer[i] = new THREE.AnimationMixer(gltf[i].scene);
+
+        anchor[i].onTargetFound = () => {
+          console.log("on target found " + i.toString() + " "+ clues[i].toString());
+
+         if (clues[i] != true){
+            clues[i] = true;
+            console.log("setting clue " + i.toString() + " to true :)");
+
+            //unhide clue section
+            console.log("setting clue section " + [i+1].toString() + " to visible :)");
+            document.getElementById("tabs-clue-" + [i+1].toString() +"-li").style.display = "inline";
+            // document.getElementById("tabs-clue-" + [i+1].toString()).click();
+            // $(document).ready(function(){
+            //     $("#tabs-clue-1-tab").click(function(){
+            //         $("#tabs-clue-1").click();
+            //     });
+            // });
+            // $('#tabs-clue-1').click();
+            // document.getElementById("tabs-clue-" + [i+1].toString()).style.display = "inline";
+
+          }
+
+        }
+        anchor[i].onTargetLost = () => {
+          console.log("on target lost " + i.toString());
+          // document.getElementById("tabs-clue-1-li").style.display = "block";
+        }
     }
-
-
-
-    // const gltf = await loadGLTF('../../assets/models/letters/letter_p.gltf');
-    // gltf.scene.scale.set(1,1,1);
-    // gltf.scene.position.set(0, 0, 0.5);
-    //
-    // anchor[0].group.add(gltf.scene);
-
-    // const mixer = new THREE.AnimationMixer(gltf[0].scene);
 
 
     const clock = new THREE.Clock();

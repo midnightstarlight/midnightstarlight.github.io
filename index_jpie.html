@@ -250,11 +250,12 @@
 
                         <!-- Instructions section -->
                         <div class="tab-pane fade show active" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
-                            <h4> Lorem ipsum dolor sit amet </h4>
+                            <h4 style="text-align:center"> 🌟👑🎄 Christmas 🎁💰🌟 </h4>
+                            <h4 style="text-align:center"> Annual treasure hunt !</h4>
                             <p>Day handsome addition horrible sensible goodness two contempt. Evening for married his account removal. Estimable me disposing of be moonlight cordially curiosity.</p>
-                            <button class="btn btn-primary btn-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Block button</button>
+                            <button class="btn btn-primary btn-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Solve the hunt 🌟</button>
 
-                            <a href="#" onClick="requestFullScreen();"> click </a>
+                            <!-- <a href="#" onClick="requestFullScreen();"> click </a> -->
 
                             <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
                               <div class="offcanvas-header">
@@ -274,15 +275,43 @@
 
                             <div class="tab-content" id="tabcontent2" >
 
-                                <div class="tab-pane" id="tabs-clue-1" role="tabpanel" aria-labelledby="tabs-clue-1-tab">
+                                <div class="tab-pane fade show active" id="tabs-clue-0" role="tabpanel" aria-labelledby="tabs-clue-2-tab" >
+                                    <h5> Welcome! </h5>
+                                    <p>Collect & scan clues to unveal the next clue!</p>
+                                </div>
+
+                                <div class="tab-pane" id="tabs-clue-1" role="tabpanel" aria-labelledby="tabs-clue-1-tab" >
                                     <h5> Clue #1 </h5>
                                     <p>Day handsome addition horrible sensible goodness two contempt. Evening for married his account removal. Estimable me disposing of be moonlight cordially curiosity.</p>
                                 </div>
 
-                                <div class="tab-pane fade show active" id="tabs-clue-2" role="tabpanel" aria-labelledby="tabs-clue-2-tab">
+                                <!-- <div class="tab-pane fade show active" id="tabs-clue-2" role="tabpanel" aria-labelledby="tabs-clue-2-tab" style="display:none">
+                                    <h5> Clue #2 </h5>
+                                    <p>Day handsome addition horrible sensible goodness two contempt. Evening for married his account removal. Estimable me disposing of be moonlight cordially curiosity.</p>
+                                </div> -->
+
+
+                                <div class="tab-pane fade" id="tabs-clue-2" role="tabpanel" aria-labelledby="tabs-clue-2-tab" >
                                     <h5> Clue #2 </h5>
                                     <p>Day handsome addition horrible sensible goodness two contempt. Evening for married his account removal. Estimable me disposing of be moonlight cordially curiosity.</p>
                                 </div>
+                                <div class="tab-pane fade" id="tabs-clue-3" role="tabpanel" aria-labelledby="tabs-clue-3-tab" >
+                                    <h5> Clue #3 </h5>
+                                    <p>Day handsome addition horrible sensible goodness two contempt. Evening for married his account removal. Estimable me disposing of be moonlight cordially curiosity.</p>
+                                </div>
+                                <div class="tab-pane fade" id="tabs-clue-4" role="tabpanel" aria-labelledby="tabs-clue-4-tab" >
+                                    <h5> Clue #4 </h5>
+                                    <p>Day handsome addition horrible sensible goodness two contempt. Evening for married his account removal. Estimable me disposing of be moonlight cordially curiosity.</p>
+                                </div>
+                                <div class="tab-pane fade" id="tabs-clue-5" role="tabpanel" aria-labelledby="tabs-clue-5-tab" >
+                                    <h5> Clue #5 </h5>
+                                    <p>Day handsome addition horrible sensible goodness two contempt. Evening for married his account removal. Estimable me disposing of be moonlight cordially curiosity.</p>
+                                </div>
+                                <div class="tab-pane fade" id="tabs-clue-6" role="tabpanel" aria-labelledby="tabs-clue-6-tab" >
+                                    <h5> Clue #6 </h5>
+                                    <p>Day handsome addition horrible sensible goodness two contempt. Evening for married his account removal. Estimable me disposing of be moonlight cordially curiosity.</p>
+                                </div>
+
 
                             </div>
 
@@ -292,28 +321,31 @@
 
                                 <nav aria-label="Page navigation" >
                                     <ul class="nav pagination circle-pagination pagination-sm" role="tablist">
-                                        <li class="page-item">
+                                        <!-- <li class="page-item">
                                             <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
-                                        </li>
+                                        </li> -->
 
-                                        <li class="page-item">
+                                        <li class="page-item" id="tabs-clue-1-li" style="display:none">
                                             <a class="page-link" id="tabs-clue-1-tab" data-toggle="tab" href="#tabs-clue-1" role="tab" aria-controls="tabs-clue-1" >1</a>
                                         </li>
-                                        <li class="page-item">
+                                        <li class="page-item" id="tabs-clue-2-li" style="display:none">
                                             <a class="page-link" id="tabs-clue-2-tab" data-toggle="tab" href="#tabs-clue-2" role="tab" aria-controls="tabs-clue-2" >2</a>
                                         </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">3</a>
+                                        <li class="page-item" id="tabs-clue-3-li" style="display:none">
+                                            <a class="page-link" id="tabs-clue-3-tab" data-toggle="tab" href="#tabs-clue-3" role="tab" aria-controls="tabs-clue-3" >3</a>
                                         </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">4</a>
+                                        <li class="page-item" id="tabs-clue-4-li" style="display:none">
+                                            <a class="page-link" id="tabs-clue-4-tab" data-toggle="tab" href="#tabs-clue-4" role="tab" aria-controls="tabs-clue-4" >4</a>
                                         </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">5</a>
+                                        <li class="page-item" id="tabs-clue-5-li" style="display:none">
+                                            <a class="page-link" id="tabs-clue-5-tab" data-toggle="tab" href="#tabs-clue-5" role="tab" aria-controls="tabs-clue-5" >5</a>
                                         </li>
-                                        <li class="page-item">
+                                        <li class="page-item" id="tabs-clue-6-li" style="display:none">
+                                            <a class="page-link" id="tabs-clue-6-tab" data-toggle="tab" href="#tabs-clue-6" role="tab" aria-controls="tabs-clue-6" >6</a>
+                                        </li>
+                                        <!-- <li class="page-item" >
                                             <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </nav>
                             </div>
