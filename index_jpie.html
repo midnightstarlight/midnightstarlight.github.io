@@ -416,22 +416,13 @@
             height: 10px;
           }
 
-          #top-div {
-              width: 100vw;
-              height: 50vh; /*this is so that the top is always consistantly a square*/
-              position: relative;
-              border-radius: 0 0 0 24px;
-              z-index: 1;
-              overflow: hidden;
-              background-image: url('assets/gif/merry-christmas-cute.gif');
-              background-repeat: no-repeat;
-              background-attachment: fixed;
-              background-position: center;
-              background-size: 100%;
-              text-align: center;
-              padding-top: 10%;
-              /* background-position: 50% 20%; /* right, bottom*/ */
-          }
+          /* .confetti{
+               max-width: 640px;
+               display: block;
+               margin: 0 auto;
+               border: 1px solid #ddd;
+               user-select: none;
+            } */
 
 
     </style>
@@ -495,29 +486,33 @@
                             <h4 style="text-align:center"> 🌟👑🎄 Christmas 🎁💰🌟 </h4>
                             <h4 style="text-align:center"> Annual treasure hunt !</h4>
                             <p>Merrrry Christmas!! Welcome welcome to the annual treasure hunty 👑🎄 It's an exiciting one this year because it's gonna incoporate AR. Collect & scan your clues to unveal what's next!</p>
-                            <button class="btn btn-primary btn-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Solve the hunt 🌟</button>
+                            <button id="btn-init-solve-hunt" class="btn btn-primary btn-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Solve the hunt 🌟</button>
 
                             <!-- <a href="#" onClick="requestFullScreen();"> click </a> -->
                             <!-- show to test -->
-                            <div class="offcanvas offcanvas-bottom h-auto show" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius:15px 15px 0px 0px">
+                            <div class="offcanvas offcanvas-bottom h-auto " tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius:15px 15px 0px 0px">
                               <div class="offcanvas-header" style="justify-content:space-between">
                                 <h5 class="offcanvas-title" id="offcanvasBottomLabel">🎄Solve the HUNT!🌟</h5>
                                 <button type="button" onclick="requestFullScreen();" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                               </div>
                               <div class="offcanvas-body small">
                                   <div class="w-auto" id="top-div" style="display:none">
+                                      <h5 style="text-align:center"> YOU GOT IT!! GO FIND YOUR PREZZI NOW</h5>
+                                      <img src="assets/gif/merry-christmas-cute.gif"/>
 
-                                      <h5> YOU GOT IT!! GO FIND YOUR PREZZI NOW</h5>
+                                      <!-- <div id="canvas-confetti"></div> -->
 
+                                      <br/><br/>
                                   </div>
+
                                   <div class="form-group" id="hunt-submission-check">
                                       <label for="validationServer01">Your answer here ☃️</label>
                                       <!-- <input type="text" class="form-control is-valid" id="validationServer01" value="Mark" required> -->
                                       <!-- <input type="text" class="form-control fade show" id="validationServer01" value="Mark" required> -->
-                                      <input type="text" class="form-control"  id="validationServer01" autofocus required>
-                                      <!-- <div class="valid-feedback">
-                                          Looks good!
-                                      </div> -->
+                                      <input type="text" class="form-control"  id="validationServer01" required>
+                                      <div class="valid-feedback">
+                                          Go look for your prezzi at the above location!
+                                      </div>
                                   </div>
 
                                   <!-- <button class="btn btn-primary btn-block" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">Solve Hunt! 🌟</button> -->
@@ -528,7 +523,7 @@
 
 
                             <!-- Starting bottom sheet - on purpose to need user to trigger full screen due to limitation of html5 -->
-                            <div class="offcanvas offcanvas-bottom  h-auto" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius:15px 15px 0px 0px">
+                            <div class="offcanvas offcanvas-bottom show h-auto" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius:15px 15px 0px 0px">
                               <div class="offcanvas-header" >
                                 <h5 class="offcanvas-title" id="offcanvasBottomLabel" style="text-align:center">🌟👑🎄 Welcome! 🎁💰🌟</h5>
                                 <!-- <button type="button" onclick="requestFullScreen();" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->

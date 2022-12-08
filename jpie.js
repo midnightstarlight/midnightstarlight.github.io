@@ -34,6 +34,12 @@ window.onload = function(){
 
     });
 
+
+    document.getElementById('btn-init-solve-hunt').addEventListener('click', function(){
+        $('#validationServer01').focus();
+        console.log("solve hunt butn pressed");
+    })
+
 }
 
 //
@@ -215,8 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-$(document).ready(function() {
-      setTimeout(function() {
-          $("#validationServer01").focus();
-      }, 100);
-   });
+// $(document).onload = function() {
+//   setTimeout(function() {
+//       $("#validationServer01").focus();
+//   }, 100);
+// };
