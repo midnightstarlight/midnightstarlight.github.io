@@ -257,10 +257,22 @@
 
                             <!-- <a href="#" onClick="requestFullScreen();"> click </a> -->
 
-                            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                            <div class="offcanvas offcanvas-bottom show" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
                               <div class="offcanvas-header">
                                 <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
-                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                <button type="button" onclick="requestFullScreen();" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                              </div>
+                              <div class="offcanvas-body small">
+                                ...
+                              </div>
+                            </div>
+
+
+                            <!-- Starting bottom sheet - on purpose to need user to trigger full screen due to limitation of html5 -->
+                            <div class="offcanvas offcanvas-bottom show" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                              <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+                                <button type="button" onclick="requestFullScreen();" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                               </div>
                               <div class="offcanvas-body small">
                                 ...
