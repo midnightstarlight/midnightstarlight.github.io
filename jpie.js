@@ -214,3 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
   start();
 
 });
+
+$(document).ready(function() {
+      setTimeout(function() {
+          $("#validationServer01").focus();
+      }, 100);
+   });
