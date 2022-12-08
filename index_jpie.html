@@ -416,13 +416,17 @@
             height: 10px;
           }
 
-          /* .confetti{
-               max-width: 640px;
-               display: block;
-               margin: 0 auto;
-               border: 1px solid #ddd;
-               user-select: none;
-            } */
+          .confetti{
+            position: absolute;
+               /* max-width: 100vw;
+               max-height: 100px; */
+               left: 0px;
+               top: 0px;
+               /* display: block; */
+               /* margin: 0 auto; */
+               /* border: 1px solid #ddd; */
+               /* user-select: none; */
+            }
 
 
     </style>
@@ -500,7 +504,7 @@
                                       <h5 style="text-align:center"> YOU GOT IT!! GO FIND YOUR PREZZI NOW</h5>
                                       <img src="assets/gif/merry-christmas-cute.gif"/>
 
-                                      <!-- <div id="canvas-confetti"></div> -->
+                                      <canvas class="confetti" id="canvas-confetti"></canvas>
 
                                       <br/><br/>
                                   </div>
@@ -525,7 +529,7 @@
                             <!-- Starting bottom sheet - on purpose to need user to trigger full screen due to limitation of html5 -->
                             <div class="offcanvas offcanvas-bottom show h-auto" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius:15px 15px 0px 0px">
                               <div class="offcanvas-header" >
-                                <h5 class="offcanvas-title" id="offcanvasBottomLabel" style="text-align:center">🌟👑🎄 Welcome! 🎁💰🌟</h5>
+                                <h5 class="offcanvas-title" id="offcanvasBottomLabel" style="text-align:center">🌟👑🎄 Ho Ho Ho! 🎁💰🌟</h5>
                                 <!-- <button type="button" onclick="requestFullScreen();" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
                               </div>
                               <!-- <div class="offcanvas-body small"> -->
@@ -538,7 +542,11 @@
 
                                     </div> -->
 
-                                    <p>Merrrry Christmas!! Welcome welcome to the annual treasure hunty 👑🎄 It's an exiciting one this year because it's gonna incoporate AR. Collect & scan your clues to unveal what's next!</p>
+                                    <p>Merrrry Christmas!! its the season to be jollly!! Welcome welcome to the annual treasure hunty 👑🎄</p>
+                                    <p> It's an exiciting one this year because it's gonna incoporate AR.</p>
+                                    
+                                    <p> Collect & scan your clues to unveal what's next!</p>
+
 
 
                                     <!-- </canvas> -->
