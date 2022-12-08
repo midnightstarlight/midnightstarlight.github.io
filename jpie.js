@@ -7,6 +7,35 @@
 import {loadGLTF} from "../../libs/loader.js";
 
 const THREE = window.MINDAR.IMAGE.THREE;
+
+window.onload = function(){
+
+    var btn = document.getElementById('solve-hunt-btn');
+    var hunt_field = document.getElementById('validationServer01');
+    // var btm-sheet-validation = document.getElementById('offcanvasbottom');
+    var congrats_gif = document.getElementById('top-div');
+
+    // hunt_field.focus();
+
+    btn.addEventListener('click', function() {
+      // box.classList.remove('class1');
+      // box.classList.add('class2');
+
+      if(hunt_field.value.toLowerCase() == "macair"){
+          // show validation correct
+           hunt_field.classList.add('is-valid');
+           congrats_gif.style.display = "block";
+           //show gif animation + congrats message
+           // document.getElementById("tabs-clue-1-li").style.display = "block";
+           //document.getElementById("tabs-clue-" + [i+1].toString() +"-li").style.display = "inline";
+      }
+
+      console.log("butn pressed");
+
+    });
+
+}
+
 //
 // window.onload = function(){
 // 	//canvas init

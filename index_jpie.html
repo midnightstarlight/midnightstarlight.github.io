@@ -36,191 +36,191 @@
     </script>
 
     <script>
-  // Array to store our Snowflake objects
-  let snowflakes = [];
+      // Array to store our Snowflake objects
+      let snowflakes = [];
 
-  // Global variables to store our browser's window size
-  let browserWidth;
-  let browserHeight;
+      // Global variables to store our browser's window size
+      let browserWidth;
+      let browserHeight;
 
-  // Specify the number of snowflakes you want visible
-  let numberOfSnowflakes = 20;
+      // Specify the number of snowflakes you want visible
+      let numberOfSnowflakes = 20;
 
-  // Flag to reset the position of the snowflakes
-  let resetPosition = false;
+      // Flag to reset the position of the snowflakes
+      let resetPosition = false;
 
-  // Handle accessibility
-  let enableAnimations = false;
-  let reduceMotionQuery = matchMedia("(prefers-reduced-motion)");
+      // Handle accessibility
+      let enableAnimations = false;
+      let reduceMotionQuery = matchMedia("(prefers-reduced-motion)");
 
-  // Handle animation accessibility preferences
-  function setAccessibilityState() {
-    if (reduceMotionQuery.matches) {
-      enableAnimations = false;
-    } else {
-      enableAnimations = true;
-    }
-  }
-  setAccessibilityState();
-
-  reduceMotionQuery.addListener(setAccessibilityState);
-
-  //
-  // It all starts here...
-  //
-  function setup() {
-    if (enableAnimations) {
-      window.addEventListener("DOMContentLoaded", generateSnowflakes, false);
-      window.addEventListener("resize", setResetFlag, false);
-    }
-  }
-  setup();
-
-  //
-  // Constructor for our Snowflake object
-  //
-  class Snowflake {
-    constructor(element, speed, xPos, yPos) {
-      // set initial snowflake properties
-      this.element = element;
-      this.speed = speed;
-      this.xPos = xPos;
-      this.yPos = yPos;
-      this.scale = 1;
-
-      // declare variables used for snowflake's motion
-      this.counter = 0;
-      this.sign = Math.random() < 0.5 ? 1 : -1;
-
-      // setting an initial opacity and size for our snowflake
-      this.element.style.opacity = (0.1 + Math.random()) / 3;
-    }
-
-    // The function responsible for actually moving our snowflake
-    update(delta) {
-      // using some trigonometry to determine our x and y position
-      this.counter += (this.speed / 5000) * delta;
-      this.xPos += (this.sign * delta * this.speed * Math.cos(this.counter)) / 40;
-      this.yPos += Math.sin(this.counter) / 40 + (this.speed * delta) / 30;
-      this.scale = 0.5 + Math.abs((10 * Math.cos(this.counter)) / 20);
-
-      // setting our snowflake's position
-      setTransform(
-        Math.round(this.xPos),
-        Math.round(this.yPos),
-        this.scale,
-        this.element
-      );
-
-      // if snowflake goes below the browser window, move it back to the top
-      if (this.yPos > browserHeight) {
-        this.yPos = -50;
+      // Handle animation accessibility preferences
+      function setAccessibilityState() {
+        if (reduceMotionQuery.matches) {
+          enableAnimations = false;
+        } else {
+          enableAnimations = true;
+        }
       }
-    }
-  }
+      setAccessibilityState();
 
-  //
-  // A performant way to set your snowflake's position and size
-  //
-  function setTransform(xPos, yPos, scale, el) {
-    el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) scale(${scale}, ${scale})`;
-  }
+      reduceMotionQuery.addListener(setAccessibilityState);
 
-  //
-  // The function responsible for creating the snowflake
-  //
-  function generateSnowflakes() {
-    // get our snowflake element from the DOM and store it
-    let originalSnowflake = document.querySelector(".snowflake");
-
-    // access our snowflake element's parent container
-    let snowflakeContainer = originalSnowflake.parentNode;
-    snowflakeContainer.style.display = "block";
-
-    // get our browser's size
-    browserWidth = document.documentElement.clientWidth;
-    browserHeight = document.documentElement.clientHeight;
-
-    // create each individual snowflake
-    for (let i = 0; i < numberOfSnowflakes; i++) {
-      // clone our original snowflake and add it to snowflakeContainer
-      let snowflakeClone = originalSnowflake.cloneNode(true);
-      snowflakeContainer.appendChild(snowflakeClone);
-
-      // set our snowflake's initial position and related properties
-      let initialXPos = getPosition(50, browserWidth);
-      let initialYPos = getPosition(50, browserHeight);
-      let speed = (5 + Math.random() * 40) * delta;
-
-      // create our Snowflake object
-      let snowflakeObject = new Snowflake(
-        snowflakeClone,
-        speed,
-        initialXPos,
-        initialYPos
-      );
-      snowflakes.push(snowflakeObject);
-    }
-
-    // remove the original snowflake because we no longer need it visible
-    snowflakeContainer.removeChild(originalSnowflake);
-
-    requestAnimationFrame(moveSnowflakes);
-  }
-
-  //
-  // Responsible for moving each snowflake by calling its update function
-  //
-  let frames_per_second = 60;
-  let frame_interval = 1000 / frames_per_second;
-
-  let previousTime = performance.now();
-  let delta = 1;
-
-  function moveSnowflakes(currentTime) {
-    delta = (currentTime - previousTime) / frame_interval;
-
-    if (enableAnimations) {
-      for (let i = 0; i < snowflakes.length; i++) {
-        let snowflake = snowflakes[i];
-        snowflake.update(delta);
+      //
+      // It all starts here...
+      //
+      function setup() {
+        if (enableAnimations) {
+          window.addEventListener("DOMContentLoaded", generateSnowflakes, false);
+          window.addEventListener("resize", setResetFlag, false);
+        }
       }
-    }
+      setup();
 
-    previousTime = currentTime;
+      //
+      // Constructor for our Snowflake object
+      //
+      class Snowflake {
+        constructor(element, speed, xPos, yPos) {
+          // set initial snowflake properties
+          this.element = element;
+          this.speed = speed;
+          this.xPos = xPos;
+          this.yPos = yPos;
+          this.scale = 1;
 
-    // Reset the position of all the snowflakes to a new value
-    if (resetPosition) {
-      browserWidth = document.documentElement.clientWidth;
-      browserHeight = document.documentElement.clientHeight;
+          // declare variables used for snowflake's motion
+          this.counter = 0;
+          this.sign = Math.random() < 0.5 ? 1 : -1;
 
-      for (let i = 0; i < snowflakes.length; i++) {
-        let snowflake = snowflakes[i];
+          // setting an initial opacity and size for our snowflake
+          this.element.style.opacity = (0.1 + Math.random()) / 3;
+        }
 
-        snowflake.xPos = getPosition(50, browserWidth);
-        snowflake.yPos = getPosition(50, browserHeight);
+        // The function responsible for actually moving our snowflake
+        update(delta) {
+          // using some trigonometry to determine our x and y position
+          this.counter += (this.speed / 5000) * delta;
+          this.xPos += (this.sign * delta * this.speed * Math.cos(this.counter)) / 40;
+          this.yPos += Math.sin(this.counter) / 40 + (this.speed * delta) / 30;
+          this.scale = 0.5 + Math.abs((10 * Math.cos(this.counter)) / 20);
+
+          // setting our snowflake's position
+          setTransform(
+            Math.round(this.xPos),
+            Math.round(this.yPos),
+            this.scale,
+            this.element
+          );
+
+          // if snowflake goes below the browser window, move it back to the top
+          if (this.yPos > browserHeight) {
+            this.yPos = -50;
+          }
+        }
       }
 
-      resetPosition = false;
-    }
+      //
+      // A performant way to set your snowflake's position and size
+      //
+      function setTransform(xPos, yPos, scale, el) {
+        el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) scale(${scale}, ${scale})`;
+      }
 
-    requestAnimationFrame(moveSnowflakes);
-  }
+      //
+      // The function responsible for creating the snowflake
+      //
+      function generateSnowflakes() {
+        // get our snowflake element from the DOM and store it
+        let originalSnowflake = document.querySelector(".snowflake");
 
-  //
-  // This function returns a number between (maximum - offset) and (maximum + offset)
-  //
-  function getPosition(offset, size) {
-    return Math.round(-1 * offset + Math.random() * (size + 2 * offset));
-  }
+        // access our snowflake element's parent container
+        let snowflakeContainer = originalSnowflake.parentNode;
+        snowflakeContainer.style.display = "block";
 
-  //
-  // Trigger a reset of all the snowflakes' positions
-  //
-  function setResetFlag(e) {
-    resetPosition = true;
-  }
-</script>
+        // get our browser's size
+        browserWidth = document.documentElement.clientWidth;
+        browserHeight = document.documentElement.clientHeight;
+
+        // create each individual snowflake
+        for (let i = 0; i < numberOfSnowflakes; i++) {
+          // clone our original snowflake and add it to snowflakeContainer
+          let snowflakeClone = originalSnowflake.cloneNode(true);
+          snowflakeContainer.appendChild(snowflakeClone);
+
+          // set our snowflake's initial position and related properties
+          let initialXPos = getPosition(50, browserWidth);
+          let initialYPos = getPosition(50, browserHeight);
+          let speed = (5 + Math.random() * 40) * delta;
+
+          // create our Snowflake object
+          let snowflakeObject = new Snowflake(
+            snowflakeClone,
+            speed,
+            initialXPos,
+            initialYPos
+          );
+          snowflakes.push(snowflakeObject);
+        }
+
+        // remove the original snowflake because we no longer need it visible
+        snowflakeContainer.removeChild(originalSnowflake);
+
+        requestAnimationFrame(moveSnowflakes);
+      }
+
+      //
+      // Responsible for moving each snowflake by calling its update function
+      //
+      let frames_per_second = 60;
+      let frame_interval = 1000 / frames_per_second;
+
+      let previousTime = performance.now();
+      let delta = 1;
+
+      function moveSnowflakes(currentTime) {
+        delta = (currentTime - previousTime) / frame_interval;
+
+        if (enableAnimations) {
+          for (let i = 0; i < snowflakes.length; i++) {
+            let snowflake = snowflakes[i];
+            snowflake.update(delta);
+          }
+        }
+
+        previousTime = currentTime;
+
+        // Reset the position of all the snowflakes to a new value
+        if (resetPosition) {
+          browserWidth = document.documentElement.clientWidth;
+          browserHeight = document.documentElement.clientHeight;
+
+          for (let i = 0; i < snowflakes.length; i++) {
+            let snowflake = snowflakes[i];
+
+            snowflake.xPos = getPosition(50, browserWidth);
+            snowflake.yPos = getPosition(50, browserHeight);
+          }
+
+          resetPosition = false;
+        }
+
+        requestAnimationFrame(moveSnowflakes);
+      }
+
+      //
+      // This function returns a number between (maximum - offset) and (maximum + offset)
+      //
+      function getPosition(offset, size) {
+        return Math.round(-1 * offset + Math.random() * (size + 2 * offset));
+      }
+
+      //
+      // Trigger a reset of all the snowflakes' positions
+      //
+      function setResetFlag(e) {
+        resetPosition = true;
+      }
+    </script>
 
     <!-- Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -416,6 +416,23 @@
             height: 10px;
           }
 
+          #top-div {
+              width: 100vw;
+              height: 50vh; /*this is so that the top is always consistantly a square*/
+              position: relative;
+              border-radius: 0 0 0 24px;
+              z-index: 1;
+              overflow: hidden;
+              background-image: url('assets/gif/merry-christmas-cute.gif');
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              background-position: center;
+              background-size: 100%;
+              text-align: center;
+              padding-top: 10%;
+              /* background-position: 50% 20%; /* right, bottom*/ */
+          }
+
 
     </style>
 </head>
@@ -481,20 +498,37 @@
                             <button class="btn btn-primary btn-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Solve the hunt 🌟</button>
 
                             <!-- <a href="#" onClick="requestFullScreen();"> click </a> -->
-
-                            <div class="offcanvas offcanvas-bottom " tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-                              <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+                            <!-- show to test -->
+                            <div class="offcanvas offcanvas-bottom h-auto show" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius:15px 15px 0px 0px">
+                              <div class="offcanvas-header" style="justify-content:space-between">
+                                <h5 class="offcanvas-title" id="offcanvasBottomLabel">🎄Solve the HUNT!🌟</h5>
                                 <button type="button" onclick="requestFullScreen();" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                               </div>
                               <div class="offcanvas-body small">
-                                ...
+                                  <div class="w-auto" id="top-div" style="display:none">
+
+                                      <h5> YOU GOT IT!! GO FIND YOUR PREZZI NOW</h5>
+
+                                  </div>
+                                  <div class="form-group" id="hunt-submission-check">
+                                      <label for="validationServer01">Your answer here ☃️</label>
+                                      <!-- <input type="text" class="form-control is-valid" id="validationServer01" value="Mark" required> -->
+                                      <!-- <input type="text" class="form-control fade show" id="validationServer01" value="Mark" required> -->
+                                      <input type="text" class="form-control"  id="validationServer01" autofocus required>
+                                      <!-- <div class="valid-feedback">
+                                          Looks good!
+                                      </div> -->
+                                  </div>
+
+                                  <!-- <button class="btn btn-primary btn-block" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">Solve Hunt! 🌟</button> -->
+                                  <button class="btn btn-primary btn-block" id="solve-hunt-btn" type="button" >Solve Hunt! 🌟</button>
+
                               </div>
                             </div>
 
 
                             <!-- Starting bottom sheet - on purpose to need user to trigger full screen due to limitation of html5 -->
-                            <div class="offcanvas offcanvas-bottom show h-auto" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius:15px 15px 0px 0px">
+                            <div class="offcanvas offcanvas-bottom  h-auto" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius:15px 15px 0px 0px">
                               <div class="offcanvas-header" >
                                 <h5 class="offcanvas-title" id="offcanvasBottomLabel" style="text-align:center">🌟👑🎄 Welcome! 🎁💰🌟</h5>
                                 <!-- <button type="button" onclick="requestFullScreen();" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
