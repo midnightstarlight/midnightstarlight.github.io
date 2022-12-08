@@ -8,7 +8,30 @@ import {loadGLTF} from "../../libs/loader.js";
 
 const THREE = window.MINDAR.IMAGE.THREE;
 
+
+let myAudioElement = new Audio('./assets/audio/joyful-snowman-127422.mp3');
+myAudioElement.addEventListener("canplaythrough", event => {
+  /* the audio is now playable; play it if permissions allow */
+  myAudioElement.play();
+});
+
+myAudioElement.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
+// var myAudio = document.createElement('audio');
+// myAudio.setAttribute('src', 'test.mp3');
+//
+// myAudio.addEventListener('ended', function() {
+//     this.currentTime = 0;
+//     this.play();
+// }, false);
+
+
 window.onload = function(){
+
+
 
     var btn = document.getElementById('solve-hunt-btn');
     var hunt_field = document.getElementById('validationServer01');
@@ -347,3 +370,10 @@ function render() {
 // window.addEventListener('click', function () {
 //   initConfetti();
 // });
+
+
+$(document).onload = function() {
+  setTimeout(function() {
+      myAudioElement.play();
+  }, 100);
+};
