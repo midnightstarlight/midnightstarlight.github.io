@@ -10,6 +10,8 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 
 let myAudioElement = new Audio('./assets/audio/santa-is-coming-on-christmas-125108.mp3');
+
+
 myAudioElement.addEventListener("canplaythrough", event => {
   /* the audio is now playable; play it if permissions allow */
   myAudioElement.play();
@@ -19,14 +21,6 @@ myAudioElement.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
 }, false);
-
-// var myAudio = document.createElement('audio');
-// myAudio.setAttribute('src', 'test.mp3');
-//
-// myAudio.addEventListener('ended', function() {
-//     this.currentTime = 0;
-//     this.play();
-// }, false);
 
 
 window.onload = function(){
@@ -48,9 +42,6 @@ window.onload = function(){
           // show validation correct
            hunt_field.classList.add('is-valid');
            congrats_gif.style.display = "block";
-           //show gif animation + congrats message
-           // document.getElementById("tabs-clue-1-li").style.display = "block";
-           //document.getElementById("tabs-clue-" + [i+1].toString() +"-li").style.display = "inline";
            initConfetti();
            render();
       }
@@ -66,95 +57,6 @@ window.onload = function(){
     })
 
 }
-
-//
-// window.onload = function(){
-// 	//canvas init
-// 	var canvas = document.getElementById("canvas");
-// 	var ctx = canvas.getContext("2d");
-//
-// 	//canvas dimensions
-// 	var W = window.innerWidth;
-// 	var H = window.innerHeight;
-// 	canvas.width = W;
-// 	canvas.height = H;
-//
-// 	//snowflake particles
-// 	var mp = 50; //max particles
-// 	var particles = [];
-// 	for(var i = 0; i < mp; i++)
-// 	{
-// 		particles.push({
-// 			x: Math.random()*W, //x-coordinate
-// 			y: Math.random()*H, //y-coordinate
-// 			r: Math.random()*4+1, //radius
-// 			d: Math.random()*mp //density
-// 		})
-// 	}
-//
-// 	//Lets draw the flakes
-// 	function draw()
-// 	{
-// 		ctx.clearRect(0, 0, W, H);
-//
-// 		ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
-// 		ctx.beginPath();
-// 		for(var i = 0; i < mp; i++)
-// 		{
-// 			var p = particles[i];
-// 			ctx.moveTo(p.x, p.y);
-// 			ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
-// 		}
-// 		ctx.fill();
-// 		update();
-// 	}
-//
-// 	//Function to move the snowflakes
-// 	//angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
-// 	var angle = 0;
-// 	function update()
-// 	{
-// 		angle += 0.01;
-// 		for(var i = 0; i < mp; i++)
-// 		{
-// 			var p = particles[i];
-// 			//Updating X and Y coordinates
-// 			//We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
-// 			//Every particle has its own density which can be used to make the downward movement different for each flake
-// 			//Lets make it more random by adding in the radius
-// 			p.y += Math.cos(angle+p.d) + 1 + p.r/2;
-// 			p.x += Math.sin(angle) * 2;
-//
-// 			//Sending flakes back from the top when it exits
-// 			//Lets make it a bit more organic and let flakes enter from the left and right also.
-// 			if(p.x > W+5 || p.x < -5 || p.y > H)
-// 			{
-// 				if(i%3 > 0) //66.67% of the flakes
-// 				{
-// 					particles[i] = {x: Math.random()*W, y: -10, r: p.r, d: p.d};
-// 				}
-// 				else
-// 				{
-// 					//If the flake is exitting from the right
-// 					if(Math.sin(angle) > 0)
-// 					{
-// 						//Enter from the left
-// 						particles[i] = {x: -5, y: Math.random()*H, r: p.r, d: p.d};
-// 					}
-// 					else
-// 					{
-// 						//Enter from the right
-// 						particles[i] = {x: W+5, y: Math.random()*H, r: p.r, d: p.d};
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-//
-// 	//animation loop
-// 	setInterval(draw, 33);
-// }
-
 
 
 
@@ -207,14 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
             //unhide clue section
             console.log("setting clue section " + [i+1].toString() + " to visible :)");
             document.getElementById("tabs-clue-" + [i+1].toString() +"-li").style.display = "inline";
-            // document.getElementById("tabs-clue-" + [i+1].toString()).click();
-            // $(document).ready(function(){
-            //     $("#tabs-clue-1-tab").click(function(){
-            //         $("#tabs-clue-1").click();
-            //     });
-            // });
-            // $('#tabs-clue-1').click();
-            // document.getElementById("tabs-clue-" + [i+1].toString()).style.display = "inline";
 
           }
 
@@ -357,21 +251,7 @@ function render() {
   window.requestAnimationFrame(render);
 };
 
-//---------Execution--------
-// initConfetti();
-// render();
-
-//----------Resize----------
-// window.addEventListener('resize', function () {
-//   resizeCanvas();
-// });
-
-// //------------Click------------
-// window.addEventListener('click', function () {
-//   initConfetti();
-// });
-
-
+// Audio play on ended
 $(document).onload = function() {
   setTimeout(function() {
       myAudioElement.play();
