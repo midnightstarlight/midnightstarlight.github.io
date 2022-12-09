@@ -239,7 +239,12 @@
         },
         {
             "mesh" : 13,
-            "name" : "Object_34"
+            "name" : "Object_34",
+            "translation" : [
+                -5.837495803833008,
+                0,
+                -0.30654028058052063
+            ]
         },
         {
             "children" : [
@@ -265,7 +270,12 @@
         },
         {
             "mesh" : 14,
-            "name" : "Object_30"
+            "name" : "Object_30",
+            "translation" : [
+                -6.322317123413086,
+                0,
+                0
+            ]
         },
         {
             "children" : [
@@ -407,7 +417,12 @@
         },
         {
             "mesh" : 20,
-            "name" : "Object_44"
+            "name" : "Object_44",
+            "translation" : [
+                -11.43785285949707,
+                0,
+                0
+            ]
         },
         {
             "children" : [
@@ -427,7 +442,12 @@
         },
         {
             "mesh" : 21,
-            "name" : "Object_46"
+            "name" : "Object_46",
+            "translation" : [
+                -11.156042098999023,
+                0,
+                0
+            ]
         },
         {
             "children" : [

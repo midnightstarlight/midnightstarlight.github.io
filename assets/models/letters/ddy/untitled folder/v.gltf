@@ -417,7 +417,12 @@
         },
         {
             "mesh" : 20,
-            "name" : "Object_44"
+            "name" : "Object_44",
+            "translation" : [
+                -11.43785285949707,
+                0,
+                0
+            ]
         },
         {
             "children" : [
@@ -437,7 +442,12 @@
         },
         {
             "mesh" : 21,
-            "name" : "Object_46"
+            "name" : "Object_46",
+            "translation" : [
+                -12.007983207702637,
+                0,
+                0
+            ]
         },
         {
             "children" : [
