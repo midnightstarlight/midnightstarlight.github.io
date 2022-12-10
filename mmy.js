@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.querySelector("#ar-div"),
-      imageTargetSrc: './assets/targets/jyang-christmas-2022-targets.mind',
+      imageTargetSrc: './assets/targets/mmy_targets.mind',
       uiScanning:"#scanning",
       uiLoading: "no"
     });
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // console.log("loop " + i);
 
         //alloc models
-        gltf[i] = await loadGLTF('../../assets/models/letters/jpie/'+ i.toString() +'.gltf');
+        gltf[i] = await loadGLTF('../../assets/models/letters/mmy/'+ i.toString() +'.gltf');
         gltf[i].scene.scale.set(0.9,0.9,0.9);
         gltf[i].scene.position.set(0, 0, 0.5);
         anchor[i].group.add(gltf[i].scene);
