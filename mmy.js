@@ -37,7 +37,7 @@ window.onload = function(){
       // box.classList.remove('class1');
       // box.classList.add('class2');
 
-      if(hunt_field.value.toLowerCase() == "macair"){
+      if(hunt_field.value.toLowerCase() == "shopee"){
           // show validation correct
            hunt_field.classList.add('is-valid');
            congrats_gif.style.display = "block";
