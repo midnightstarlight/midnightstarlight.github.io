@@ -38,7 +38,7 @@ window.onload = function(){
       // box.classList.remove('class1');
       // box.classList.add('class2');
 
-      if(hunt_field.value.toLowerCase() == "macair"){
+      if(hunt_field.value.toLowerCase() == "vacuum"){
           // show validation correct
            hunt_field.classList.add('is-valid');
            congrats_gif.style.display = "block";
@@ -110,12 +110,25 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("setting clue section " + [i+1].toString() + " to visible :)");
             document.getElementById("tabs-clue-" + [i+1].toString() +"-li").style.display = "inline";
 
+            document.getElementById("tabs-clue-" + [i+1].toString() + "-tab").click();
+
+            let tab_clue = document.getElementById("tabs-text-2-tab");
+
+            //if tab is not focus, focus on tabs
+            if (tab_clue.getAttribute("aria-selected") != true){
+
+                // tab_clue.setAttribute("aria-selected", true);
+
+                document.getElementById("tabs-text-2-tab").click();
+                console.log("tab clue is not focus - setting to focus now");
+            }
           }
 
         }
         anchor[i].onTargetLost = () => {
           console.log("on target lost " + i.toString());
           // document.getElementById("tabs-clue-1-li").style.display = "block";
+
         }
     }
 

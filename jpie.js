@@ -108,6 +108,19 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("setting clue section " + [i+1].toString() + " to visible :)");
             document.getElementById("tabs-clue-" + [i+1].toString() +"-li").style.display = "inline";
 
+            document.getElementById("tabs-clue-" + [i+1].toString() + "-tab").click();
+
+            let tab_clue = document.getElementById("tabs-text-2-tab");
+
+            //if tab is not focus, focus on tabs
+            if (tab_clue.getAttribute("aria-selected") != true){
+
+                // tab_clue.setAttribute("aria-selected", true);
+
+                document.getElementById("tabs-text-2-tab").click();
+                console.log("tab clue is not focus - setting to focus now");
+            }
+
           }
 
         }
