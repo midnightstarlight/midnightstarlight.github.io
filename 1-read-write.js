@@ -38,7 +38,7 @@ var nfc = {
 
     ndef.write({
       records: [
-        { recordType:"absolute-url", data:"https://www.instagram.com/thesingaporedis/?igshid=YmMyMTA2M2Y%3D" },
+        { recordType:"url", data:"https://www.instagram.com/thesingaporedis/" },
         // { recordType:"url", data:"https://code-boxx.com/" },
         // { recordType:"url", data:"sms:12345678" },
         // { recordType:"url", data:"tel:12345678" },
