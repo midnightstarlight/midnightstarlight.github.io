@@ -43,7 +43,7 @@ var nfc = {
         { recordType:"url", data:"tel:12345678" },
         { recordType:"url", data:"mailto:jon@doe.com?subject=Title&body=Body" },
         { recordType:"url", data:"geo:35.698723,139.772639" },
-        { recordType:"empty" }
+        // { recordType:"empty" }
       ]
     })
     .then(() => nfc.logger("Write OK"))
